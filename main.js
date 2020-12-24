@@ -8,6 +8,8 @@ const port = 7777;
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
 
+let tree = dirTree('./public/');
+
 // Storage assignment
 const storage =   multer.diskStorage({
     destination: function (req, file, callback) {
@@ -37,6 +39,7 @@ app.post('/upload', (req, res) => {
             console.log(err);
             return res.end("Error uploading file.");
         }
+        tree = dirTree('./public/')
         res.end("File is uploaded");
     });
 });
